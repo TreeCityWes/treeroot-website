@@ -22,11 +22,11 @@ function Header() {
             <a href="https://youtube.com/treecitywes" target="_blank" rel="noopener noreferrer" className="social-link">
               YouTube
             </a>
-            <a href="#" className="social-link">
+            <a href="https://dexscreener.com/solana/auqivmakuefz78czbeqagbsffj3tgu2gwfmgbhmvgjbq" target="_blank" rel="noopener noreferrer" className="social-link">
               DexScreener
             </a>
           </div>
-          <a href="#" className="btn-primary pump-btn">
+          <a href="https://pump.fun/coin/J7hX5qVuJuiUiuZ1AkqE7eVS3sjTJ5kgFnuJwR2Rpump" target="_blank" rel="noopener noreferrer" className="btn-primary pump-btn">
             Buy on Pump.fun
           </a>
         </div>
