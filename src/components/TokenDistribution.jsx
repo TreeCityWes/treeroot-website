@@ -3,16 +3,16 @@ import './TokenDistribution.css'
 
 // Visual data - exaggerated for better visibility
 const visualData = [
-  { name: 'Public Launch on Pump.fun', value: 70, actualValue: 95, tokens: '950,000,000', color: '#1a1a1a' },
-  { name: 'Public Staking Pool', value: 18, actualValue: 3, tokens: '30,000,000', color: '#2d2d2d' },
-  { name: 'Paid DEX / NFT Development Costs', value: 12, actualValue: 2, tokens: '20,000,000', color: '#404040' }
+  { name: 'Public Launch on Pump.fun', value: 68, actualValue: 93.5, tokens: '935,000,000', color: '#1a1a1a' },
+  { name: 'Public Staking Pool', value: 20, actualValue: 5, tokens: '50,000,000', color: '#2d2d2d' },
+  { name: 'Paid DEX / NFT Development Costs', value: 12, actualValue: 1.5, tokens: '15,000,000', color: '#404040' }
 ]
 
 // Actual data for labels and tooltips
 const actualData = [
-  { name: 'Public Launch on Pump.fun', value: 95, tokens: '950,000,000', color: '#1a1a1a' },
-  { name: 'Public Staking Pool', value: 3, tokens: '30,000,000', color: '#2d2d2d' },
-  { name: 'Paid DEX / NFT Development Costs', value: 2, tokens: '20,000,000', color: '#404040' }
+  { name: 'Public Launch on Pump.fun', value: 93.5, tokens: '935,000,000', color: '#1a1a1a' },
+  { name: 'Public Staking Pool', value: 5, tokens: '50,000,000', color: '#2d2d2d' },
+  { name: 'Paid DEX / NFT Development Costs', value: 1.5, tokens: '15,000,000', color: '#404040' }
 ]
 
 const RADIAN = Math.PI / 180
