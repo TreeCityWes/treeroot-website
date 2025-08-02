@@ -14,7 +14,7 @@ function Hero() {
             <a href="#" className="btn-primary">
               View on pump.fun
             </a>
-            <a href="#about" className="btn-secondary">
+            <a href="https://x.com/i/communities/1951722418839458072" target="_blank" rel="noopener noreferrer" className="btn-secondary">
               Learn More
             </a>
           </div>

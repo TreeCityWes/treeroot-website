@@ -13,8 +13,14 @@ function Header() {
             <a href="https://t.me/TreeRootDev" target="_blank" rel="noopener noreferrer" className="social-link">
               Telegram
             </a>
+            <a href="https://x.com/i/communities/1951722418839458072" target="_blank" rel="noopener noreferrer" className="social-link">
+              X Community
+            </a>
             <a href="https://x.com/TreeRootDev" target="_blank" rel="noopener noreferrer" className="social-link">
-              X
+              Dev
+            </a>
+            <a href="https://youtube.com/treecitywes" target="_blank" rel="noopener noreferrer" className="social-link">
+              YouTube
             </a>
             <a href="#" className="social-link">
               DexScreener

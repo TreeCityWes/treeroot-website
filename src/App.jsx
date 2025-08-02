@@ -1,5 +1,6 @@
 import Header from './components/Header'
 import Hero from './components/Hero'
+import TokenDistribution from './components/TokenDistribution'
 import Footer from './components/Footer'
 import NoiseOverlay from './components/NoiseOverlay'
 import './App.css'
@@ -11,6 +12,7 @@ function App() {
       <Header />
       <main>
         <Hero />
+        <TokenDistribution />
       </main>
       <Footer />
     </div>
