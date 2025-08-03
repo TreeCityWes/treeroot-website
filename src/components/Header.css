@@ -42,38 +42,37 @@
 .social-links {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
-  padding: 6px;
-  background: rgba(11, 11, 10, 0.6);
-  border: 1px solid rgba(57, 255, 20, 0.2);
-  border-radius: 6px;
-  backdrop-filter: blur(5px);
+  gap: 1.5rem;
 }
 
 .social-link {
   color: #39ff14;
   transition: all 0.3s ease;
-  padding: 6px 10px;
-  border-radius: 4px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   text-decoration: none;
-  font-size: 0.8rem;
-  font-weight: 600;
-  font-family: 'Courier New', monospace;
-  border: 1px solid transparent;
-  min-width: 28px;
-  text-align: center;
-  letter-spacing: 0.5px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  position: relative;
+  padding: 4px 0;
 }
 
 .social-link:hover {
   color: #66ff99;
-  background: rgba(57, 255, 20, 0.1);
-  border-color: rgba(57, 255, 20, 0.3);
   transform: translateY(-1px);
-  box-shadow: 0 0 10px rgba(57, 255, 20, 0.2);
+}
+
+.social-link::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 1px;
+  bottom: 0;
+  left: 0;
+  background: #39ff14;
+  transition: width 0.3s ease;
+}
+
+.social-link:hover::after {
+  width: 100%;
 }
 
 /* Platform-specific hover colors */
@@ -122,14 +121,11 @@
   
   .social-links {
     order: 2;
-    gap: 0.4rem;
-    padding: 4px;
+    gap: 1rem;
   }
   
   .social-link {
-    padding: 4px 8px;
-    font-size: 0.75rem;
-    min-width: 24px;
+    font-size: 0.8rem;
   }
   
   .pump-btn {
@@ -140,6 +136,10 @@
 @media (max-width: 480px) {
   .header-links {
     flex-direction: column;
+    gap: 0.8rem;
+  }
+  
+  .social-links {
     gap: 0.8rem;
   }
 }
