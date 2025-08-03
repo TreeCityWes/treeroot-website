@@ -25,19 +25,25 @@
   line-height: 1.6;
 }
 
-.nft-content {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 3rem;
+.nft-card {
+  background: rgba(0, 0, 0, 0.5);
+  border: 1.5px solid rgba(57, 255, 20, 0.25);
+  border-radius: 18px;
+  padding: 2.5rem 2rem;
   margin-bottom: 3rem;
+  box-shadow: 0 0 24px 0 rgba(57,255,20,0.05);
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
 }
 
 .nft-benefits {
-  background: rgba(0, 0, 0, 0.4);
-  padding: 2rem;
-  border-radius: 12px;
-  border: 1px solid rgba(57, 255, 20, 0.3);
-  height: fit-content;
+  background: none;
+  border: none;
+  border-radius: 0;
+  padding: 0 0 1.5rem 0;
+  margin: 0;
+  border-bottom: 1px solid rgba(57,255,20,0.12);
 }
 
 .benefits-title {
@@ -67,11 +73,11 @@
 }
 
 .whitelist-breakdown {
-  background: rgba(0, 0, 0, 0.4);
-  padding: 2rem;
-  border-radius: 12px;
-  border: 1px solid rgba(57, 255, 20, 0.3);
-  height: fit-content;
+  background: none;
+  border: none;
+  border-radius: 0;
+  padding: 0;
+  margin: 0;
 }
 
 .whitelist-title {
@@ -169,10 +175,9 @@
     padding: 3rem 0;
   }
   
-  .nft-content {
-    grid-template-columns: 1fr;
+  .nft-card {
+    padding: 1.5rem 0.5rem;
     gap: 2rem;
-    margin-bottom: 3rem;
   }
   
   .nft-benefits,

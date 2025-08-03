@@ -12,8 +12,7 @@ function NFTSection() {
             distributed as staking rewards among all holders.
           </p>
         </div>
-        
-        <div className="nft-content">
+        <div className="nft-card">
           <div className="nft-benefits">
             <h3 className="benefits-title">Tree Lord Benefits</h3>
             <ul className="benefits-list">
@@ -24,7 +23,6 @@ function NFTSection() {
               <li><strong>X1 Migration:</strong> Early access to X1 Blockchain features</li>
             </ul>
           </div>
-          
           <div className="whitelist-breakdown">
             <h3 className="whitelist-title">Whitelist Allocation</h3>
             <div className="whitelist-grid">
@@ -55,7 +53,6 @@ function NFTSection() {
             </div>
           </div>
         </div>
-        
         <div className="nft-cta">
           <a href="https://treeroot-city.gitbook.io/litepaper/" target="_blank" rel="noopener noreferrer" className="btn-secondary nft-docs-btn">
             Read Full NFT Documentation
