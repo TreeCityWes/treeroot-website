@@ -28,8 +28,8 @@
 .nft-content {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 4rem;
-  margin-bottom: 4rem;
+  gap: 3rem;
+  margin-bottom: 3rem;
 }
 
 .nft-benefits {
@@ -37,6 +37,7 @@
   padding: 2rem;
   border-radius: 12px;
   border: 1px solid rgba(57, 255, 20, 0.3);
+  height: fit-content;
 }
 
 .benefits-title {
@@ -54,9 +55,11 @@
 
 .benefits-list li {
   color: #ffffff;
-  margin-bottom: 1rem;
+  margin-bottom: 0.75rem;
   font-size: 1rem;
-  line-height: 1.5;
+  line-height: 1.4;
+  padding-left: 0.5rem;
+  border-left: 2px solid rgba(57, 255, 20, 0.3);
 }
 
 .benefits-list li strong {
@@ -68,6 +71,7 @@
   padding: 2rem;
   border-radius: 12px;
   border: 1px solid rgba(57, 255, 20, 0.3);
+  height: fit-content;
 }
 
 .whitelist-title {
@@ -80,13 +84,13 @@
 .whitelist-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 1rem;
-  margin-bottom: 2rem;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
 }
 
 .whitelist-item {
   text-align: center;
-  padding: 1rem;
+  padding: 0.75rem;
   background: rgba(57, 255, 20, 0.05);
   border: 1px solid rgba(57, 255, 20, 0.2);
   border-radius: 8px;
@@ -99,17 +103,18 @@
 }
 
 .whitelist-number {
-  font-size: 2rem;
+  font-size: 1.8rem;
   font-weight: bold;
   color: #39ff14;
   text-shadow: 0 0 10px rgba(57, 255, 20, 0.7);
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.25rem;
 }
 
 .whitelist-label {
   color: #ffffff;
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   font-weight: 500;
+  line-height: 1.2;
 }
 
 .mint-info {

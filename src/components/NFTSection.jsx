@@ -17,11 +17,11 @@ function NFTSection() {
           <div className="nft-benefits">
             <h3 className="benefits-title">Tree Lord Benefits</h3>
             <ul className="benefits-list">
-              <li>🎯 <strong>Staking Pool Rewards:</strong> Access to 5% $ROOT allocation</li>
-              <li>🔐 <strong>Exclusive Access:</strong> Private channels and premium content</li>
-              <li>🎮 <strong>Creator Perks:</strong> Priority access to streaming events</li>
-              <li>🎁 <strong>Enhanced Giveaways:</strong> Boosted participation in community events</li>
-              <li>⚡ <strong>X1 Migration:</strong> Early access to X1 Blockchain features</li>
+              <li><strong>Staking Pool Rewards:</strong> Access to 5% $ROOT allocation</li>
+              <li><strong>Exclusive Access:</strong> Private channels and premium content</li>
+              <li><strong>Creator Perks:</strong> Priority access to streaming events</li>
+              <li><strong>Enhanced Giveaways:</strong> Boosted participation in community events</li>
+              <li><strong>X1 Migration:</strong> Early access to X1 Blockchain features</li>
             </ul>
           </div>
           

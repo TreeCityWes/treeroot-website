@@ -15,11 +15,8 @@ function Header() {
             <a href="https://t.me/TreeRootCity" target="_blank" rel="noopener noreferrer" className="social-link telegram">
               Telegram
             </a>
-            <a href="https://x.com/i/communities/1951722418839458072" target="_blank" rel="noopener noreferrer" className="social-link twitter">
-              X Community
-            </a>
             <a href="https://x.com/TreeRootDev" target="_blank" rel="noopener noreferrer" className="social-link twitter-dev">
-              X Dev
+              X
             </a>
             <a href="https://youtube.com/treecitywes" target="_blank" rel="noopener noreferrer" className="social-link youtube">
               YouTube
