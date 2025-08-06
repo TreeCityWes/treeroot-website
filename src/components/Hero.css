@@ -1,7 +1,7 @@
 .hero {
-  padding: 8rem 0;
+  padding: 0;
   position: relative;
-  min-height: 80vh;
+  height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -34,7 +34,7 @@
 }
 
 .hero-title {
-  font-size: 5rem;
+  font-size: 8rem;
   color: #39ff14;
   margin-bottom: 1.5rem;
   text-shadow: 0 0 30px rgba(57, 255, 20, 0.8);
@@ -58,12 +58,11 @@
 
 @media (max-width: 768px) {
   .hero {
-    padding: 4rem 0;
-    min-height: 70vh;
+    height: 100vh;
   }
   
   .hero-title {
-    font-size: 3rem;
+    font-size: 4.5rem;
   }
   
   .hero-subtitle {
@@ -79,12 +78,11 @@
 
 @media (max-width: 480px) {
   .hero {
-    padding: 3rem 0;
-    min-height: 60vh;
+    height: 100vh;
   }
   
   .hero-title {
-    font-size: 2.5rem;
+    font-size: 3.5rem;
   }
   
   .hero-subtitle {

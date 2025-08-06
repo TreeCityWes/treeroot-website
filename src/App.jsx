@@ -1,6 +1,7 @@
 import Header from './components/Header'
 import Hero from './components/Hero'
 import TokenDistribution from './components/TokenDistribution'
+import TradingLinks from './components/TradingLinks'
 import NFTSection from './components/NFTSection'
 import Footer from './components/Footer'
 import NoiseOverlay from './components/NoiseOverlay'
@@ -13,6 +14,7 @@ function App() {
       <Header />
       <main>
         <Hero />
+        <TradingLinks />
         <TokenDistribution />
         <NFTSection />
       </main>

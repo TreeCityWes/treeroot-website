@@ -7,7 +7,7 @@ function Header() {
       <div className="container">
         <div className="logo">
           <img src="/logo-transparents.png?v=2" alt="$ROOT Logo" className="logo-img" />
-          <span className="logo-text">treeroot.dev</span>
+          <span className="logo-text">TreeRoot.City</span>
         </div>
         <div className="header-links">
           <TokenPrice />
