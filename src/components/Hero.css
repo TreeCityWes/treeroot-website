@@ -52,6 +52,30 @@
   text-align: center;
 }
 
+.mint-card {
+  background: rgba(0, 0, 0, 0.5);
+  border: 1.5px solid rgba(57, 255, 20, 0.25);
+  border-radius: 16px;
+  padding: 1.25rem;
+  margin: 0 auto 2rem;
+  max-width: 560px;
+  box-shadow: 0 0 24px 0 rgba(57,255,20,0.08);
+}
+
+.mint-title {
+  color: #39ff14;
+  font-size: 1.4rem;
+  margin-bottom: 0.25rem;
+  text-align: center;
+}
+
+.mint-subtext {
+  color: #a6a6a6;
+  font-size: 0.95rem;
+  text-align: center;
+  margin-bottom: 0.75rem;
+}
+
 .mint-widgets {
   display: flex;
   flex-direction: column;
@@ -66,10 +90,12 @@
   font-family: 'Share Tech Mono', monospace;
   font-size: 0.95rem;
   text-shadow: 0 0 10px rgba(57, 255, 20, 0.6);
+  min-height: 20px;
 }
 
 .mint-button #mint-button-container,
-#mint-button-container {
+#mint-button-container,
+.lmt-mint-button {
   display: inline-block;
   border: 2px solid #39ff14;
   border-radius: 8px;
@@ -79,7 +105,8 @@
 }
 
 .mint-button button,
-.mint-button a {
+.mint-button a,
+.lmt-mint-button button {
   background: transparent !important;
   color: #39ff14 !important;
   font-family: 'Share Tech Mono', monospace !important;
@@ -92,6 +119,12 @@
   border-radius: 8px;
   text-decoration: none;
   display: inline-block;
+}
+
+.mint-help {
+  color: #a6a6a6;
+  font-size: 0.85rem;
+  text-align: center;
 }
 
 .hero-buttons {
