@@ -153,24 +153,25 @@ function Hero() {
           <div className="mint-card">
             <h2 className="mint-title">Mint Root Guardian</h2>
             <p className="mint-subtext">Claim your membership NFT and daily $ROOT rewards access.</p>
-            <div className="mint-meta">
-              <span className="pill">Supply: 888</span>
-              <span className="pill">Price: FREE WL / 0.05 SOL Public</span>
-              <span className={`pill ${wlEligible === true ? 'pill-eligible' : wlEligible === false ? 'pill-not' : ''}`}>
-                WL: {wlEligible === true ? 'Eligible' : wlEligible === false ? 'Not eligible' : (walletAddress ? 'Checking…' : 'Connect wallet')}
-              </span>
+            <div className="mint-meta-line">
+              <span>Supply 888</span>
+              <span className="sep">•</span>
+              <span>Free WL / 0.05 SOL</span>
+              {wlEligible !== null && (
+                <span className={`wl-chip ${wlEligible ? 'ok' : 'no'}`}>
+                  {wlEligible ? 'WL Eligible' : 'WL Not Eligible'}
+                </span>
+              )}
             </div>
             <div className="wallet-row">
-              {walletAddress ? (
-                <>
-                  <span className="wallet-badge">{walletAddress.slice(0, 4)}…{walletAddress.slice(-4)}</span>
-                  <button type="button" className="btn-secondary wallet-btn" onClick={disconnectWallet}>Disconnect</button>
-                </>
-              ) : (
-                <button type="button" className="btn-secondary wallet-btn" onClick={connectWallet} disabled={isConnecting}>
-                  {isConnecting ? 'Connecting…' : 'Connect Wallet'}
-                </button>
-              )}
+              <button
+                type="button"
+                className="btn-secondary wallet-btn"
+                onClick={walletAddress ? disconnectWallet : connectWallet}
+                disabled={isConnecting}
+              >
+                {walletAddress ? 'Disconnect' : (isConnecting ? 'Connecting…' : 'Connect Wallet')}
+              </button>
             </div>
             <div className="mint-widgets">
               <div id="mint-counter" className="mint-counter">
@@ -180,39 +181,18 @@ function Hero() {
               {showFallback && (
                 <div className="mint-fallbacks">
                   <a
-                    className="btn-secondary mint-fallback-btn"
+                    className="text-link"
                     href="https://launchmynft.io/collections/4r3G7i6wTn7Wek5zCXks3hMztdNbRAL3U9aCDFQbASzm/VAM19et9cpxGTtNAsTmR"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    Open Mint Page
+                    Having trouble? Open the mint page.
                   </a>
-                  <button
-                    type="button"
-                    className="btn-secondary mint-fallback-btn inline-toggle"
-                    onClick={() => setShowInlineMint(true)}
-                  >
-                    Open Inline Mint
-                  </button>
-                  <div className="mint-help">Having trouble? Use one of the fallback options above.</div>
                 </div>
               )}
             </div>
           </div>
-          {showInlineMint && (
-            <div className="mint-modal-overlay" onClick={() => setShowInlineMint(false)}>
-              <div className="mint-modal" onClick={(e) => e.stopPropagation()}>
-                <button className="mint-modal-close" onClick={() => setShowInlineMint(false)}>✕</button>
-                <iframe
-                  className="mint-modal-iframe"
-                  title="LaunchMyNFT Mint"
-                  src="https://launchmynft.io/collections/4r3G7i6wTn7Wek5zCXks3hMztdNbRAL3U9aCDFQbASzm/VAM19et9cpxGTtNAsTmR"
-                  loading="lazy"
-                  referrerPolicy="no-referrer"
-                />
-              </div>
-            </div>
-          )}
+          {/* Inline modal removed for a simpler, cleaner UI */}
 
           <div className="hero-buttons">
             <a href="https://pump.fun/coin/J7hX5qVuJuiUiuZ1AkqE7eVS3sjTJ5kgFnuJwR2Rpump" target="_blank" rel="noopener noreferrer" className="btn-primary">
