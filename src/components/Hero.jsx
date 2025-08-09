@@ -85,7 +85,7 @@ function Hero() {
             <div className="mint-meta">
               <span className="pill">Supply: 888</span>
               <span className="pill">Price: FREE WL / 0.05 SOL Public</span>
-              <span className="pill">WL: Connect wallet</span>
+              <span className="pill">WL: {walletAddress ? 'Connected' : 'Connect wallet'}</span>
             </div>
             <div className="wallet-row">
               {walletAddress ? (
