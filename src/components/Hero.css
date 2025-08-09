@@ -53,28 +53,28 @@
 }
 
 .mint-banner {
-  background: rgba(0, 0, 0, 0.5);
-  border: 1.5px solid rgba(57, 255, 20, 0.25);
-  border-radius: 16px;
-  padding: 1.25rem;
   margin: 0 auto 2rem;
-  max-width: 680px;
-  box-shadow: 0 0 24px 0 rgba(57,255,20,0.08);
+  max-width: 860px;
+  padding: 0.75rem 1.5rem;
+  background: rgba(10, 20, 10, 0.75);
+  border: 1px solid rgba(57, 255, 20, 0.25);
+  border-radius: 12px;
   display: flex;
-  flex-wrap: wrap;
-  gap: 0.75rem;
+  justify-content: center;
   align-items: center;
-  justify-content: space-between;
+  text-align: center;
 }
 
 .mint-banner-text {
-  color: #c9c9c9;
-  font-size: 1rem;
+  color: #e6ffe6;
+  font-size: 1.05rem;
+  letter-spacing: 0.2px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
-.mint-banner-btn {
-  white-space: nowrap;
-}
+
 
 /* Old mint widget styles removed as embed is no longer used */
 
@@ -217,6 +217,17 @@
     margin-bottom: 2rem;
   }
   
+  .mint-banner {
+    max-width: 90%;
+    padding: 0.6rem 1rem;
+  }
+  
+  .mint-banner-text {
+    font-size: 0.95rem;
+    white-space: normal;
+    text-align: center;
+  }
+  
   .hero-buttons {
     flex-direction: column;
     gap: 1rem;
@@ -234,6 +245,15 @@
   
   .hero-subtitle {
     font-size: 1rem;
+  }
+  
+  .mint-banner {
+    max-width: 95%;
+    padding: 0.5rem 0.75rem;
+  }
+  
+  .mint-banner-text {
+    font-size: 0.9rem;
   }
   
   .hero-content {
