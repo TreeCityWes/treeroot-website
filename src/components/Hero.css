@@ -201,6 +201,10 @@
   background: #000;
 }
 
+.mint-iframe-wrap.small {
+  max-width: 420px;
+}
+
 /* Modal for inline mint */
 .mint-modal-overlay {
   position: fixed;

@@ -188,6 +188,15 @@ function Hero() {
                   >
                     Having trouble? Open the mint page.
                   </a>
+                  <div className="mint-iframe-wrap small">
+                    <iframe
+                      className="mint-iframe"
+                      title="LaunchMyNFT Mint"
+                      src="https://launchmynft.io/collections/4r3G7i6wTn7Wek5zCXks3hMztdNbRAL3U9aCDFQbASzm/VAM19et9cpxGTtNAsTmR"
+                      loading="lazy"
+                      referrerPolicy="no-referrer"
+                    />
+                  </div>
                 </div>
               )}
             </div>
