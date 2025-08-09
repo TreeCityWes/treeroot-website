@@ -39,8 +39,33 @@
     <script>
       window.ownerId = "4r3G7i6wTn7Wek5zCXks3hMztdNbRAL3U9aCDFQbASzm";
       window.collectionId = "VAM19et9cpxGTtNAsTmR";
+      function loadLmnfScript() {
+        if (document.querySelector('#mint-button-container') && document.querySelector('#mint-counter')) {
+          const script = document.createElement('script');
+          script.type = 'module';
+          script.src = 'https://storage.googleapis.com/scriptslmt/0.1.3/solana.js';
+          script.onload = () => console.log('[LaunchMyNFT] script loaded');
+          script.onerror = (e) => console.error('[LaunchMyNFT] script failed to load', e);
+          document.body.appendChild(script);
+          return true;
+        }
+        return false;
+      }
       window.addEventListener('DOMContentLoaded', () => {
         console.log('[LaunchMyNFT] containers present:', !!document.getElementById('mint-button-container'), !!document.getElementById('mint-counter'))
+        if (!loadLmnfScript()) {
+          const triesMax = 20;
+          let tries = 0;
+          const iv = setInterval(() => {
+            tries++;
+            if (loadLmnfScript() || tries >= triesMax) {
+              clearInterval(iv);
+              if (tries >= triesMax) {
+                console.warn('[LaunchMyNFT] containers not found after waiting');
+              }
+            }
+          }, 150);
+        }
       });
     </script>
     <link rel="stylesheet" href="https://storage.googleapis.com/scriptslmt/0.1.3/solana.css" />
@@ -48,7 +73,5 @@
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
-    <!-- Load LaunchMyNFT after React mounts so containers exist -->
-    <script type="module" src="https://storage.googleapis.com/scriptslmt/0.1.3/solana.js"></script>
   </body>
 </html>
