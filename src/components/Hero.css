@@ -93,6 +93,27 @@
   background: rgba(57, 255, 20, 0.08);
 }
 
+.wallet-row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 0.5rem 0 0.25rem;
+}
+
+.wallet-badge {
+  color: #39ff14;
+  border: 1px solid rgba(57,255,20,0.35);
+  background: rgba(57,255,20,0.08);
+  border-radius: 8px;
+  padding: 6px 10px;
+  font-size: 0.85rem;
+}
+
+.wallet-btn {
+  padding: 8px 14px;
+}
+
 .mint-widgets {
   display: flex;
   flex-direction: column;
