@@ -10,6 +10,13 @@ function Hero() {
             $ROOT
           </h1>
           <p className="hero-subtitle">Digital Growth. Rooted in Community.</p>
+          
+          {/* Mint Widgets */}
+          <div className="mint-widgets">
+            <div id="mint-counter" className="mint-counter"></div>
+            <div id="mint-button-container" className="mint-button"></div>
+          </div>
+
           <div className="hero-buttons">
             <a href="https://pump.fun/coin/J7hX5qVuJuiUiuZ1AkqE7eVS3sjTJ5kgFnuJwR2Rpump" target="_blank" rel="noopener noreferrer" className="btn-primary">
               Buy on Pump.fun
