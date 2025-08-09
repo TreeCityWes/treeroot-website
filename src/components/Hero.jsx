@@ -13,8 +13,14 @@ function Hero() {
           
           {/* Mint Widgets */}
           <div className="mint-widgets">
-            <div id="mint-counter" className="mint-counter"></div>
-            <div id="mint-button-container" className="mint-button"></div>
+            <div id="mint-counter" className="mint-counter">
+              <span className="mint-counter-fallback">Mint status loading…</span>
+            </div>
+            <div id="mint-button-container" className="mint-button">
+              <a className="btn-secondary mint-fallback-btn" href="#mint" onClick={(e) => e.preventDefault()}>
+                Mint widget loading…
+              </a>
+            </div>
           </div>
 
           <div className="hero-buttons">

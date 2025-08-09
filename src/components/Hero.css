@@ -83,6 +83,14 @@
   text-transform: uppercase;
 }
 
+.mint-fallback-btn {
+  padding: 12px 24px;
+  border: 2px solid #39ff14;
+  border-radius: 8px;
+  text-decoration: none;
+  display: inline-block;
+}
+
 .hero-buttons {
   display: flex;
   gap: 1.5rem;
