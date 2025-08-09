@@ -1,6 +1,8 @@
+import { useState } from 'react'
 import './Hero.css'
 
 function Hero() {
+  const [showInlineMint, setShowInlineMint] = useState(false)
   return (
     <section className="hero">
       <div className="hero-background"></div>
@@ -31,6 +33,24 @@ function Hero() {
               <div className="mint-help">
                 If this box is empty, use the button above to mint on LaunchMyNFT.
               </div>
+              <button
+                type="button"
+                className="btn-secondary mint-fallback-btn inline-toggle"
+                onClick={() => setShowInlineMint(!showInlineMint)}
+              >
+                {showInlineMint ? 'Hide Inline Mint' : 'Show Inline Mint'}
+              </button>
+              {showInlineMint && (
+                <div className="mint-iframe-wrap">
+                  <iframe
+                    className="mint-iframe"
+                    title="LaunchMyNFT Mint"
+                    src="https://launchmynft.io/collections/4r3G7i6wTn7Wek5zCXks3hMztdNbRAL3U9aCDFQbASzm/VAM19et9cpxGTtNAsTmR"
+                    loading="lazy"
+                    referrerPolicy="no-referrer"
+                  />
+                </div>
+              )}
             </div>
           </div>
 
