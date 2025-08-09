@@ -1,8 +1,34 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import './Hero.css'
 
 function Hero() {
   const [showInlineMint, setShowInlineMint] = useState(false)
+  const [widgetReady, setWidgetReady] = useState(false)
+  const [showFallback, setShowFallback] = useState(false)
+
+  useEffect(() => {
+    const checkReady = () => {
+      const btnHost = document.getElementById('mint-button-container')
+      if (btnHost && btnHost.children && btnHost.children.length > 0) {
+        setWidgetReady(true)
+        setShowFallback(false)
+        return true
+      }
+      return false
+    }
+
+    // quick checks for first few seconds
+    let tries = 0
+    const iv = setInterval(() => {
+      tries += 1
+      if (checkReady() || tries >= 15) {
+        clearInterval(iv)
+        if (!checkReady()) setShowFallback(true)
+      }
+    }, 200)
+
+    return () => clearInterval(iv)
+  }, [])
   return (
     <section className="hero">
       <div className="hero-background"></div>
@@ -17,29 +43,36 @@ function Hero() {
           <div className="mint-card">
             <h2 className="mint-title">Mint Root Guardian</h2>
             <p className="mint-subtext">Claim your membership NFT and daily $ROOT rewards access.</p>
+            <div className="mint-meta">
+              <span className="pill">Supply: 888</span>
+              <span className="pill">Price: FREE WL / 0.05 SOL Public</span>
+              <span className="pill">WL: Connect wallet</span>
+            </div>
             <div className="mint-widgets">
               <div id="mint-counter" className="mint-counter">
                 <span className="mint-counter-fallback">Mint status loading…</span>
               </div>
               <div id="mint-button-container" className="mint-button"></div>
-              <a
-                className="btn-secondary mint-fallback-btn"
-                href="https://launchmynft.io/collections/4r3G7i6wTn7Wek5zCXks3hMztdNbRAL3U9aCDFQbASzm/VAM19et9cpxGTtNAsTmR"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Open Mint Page
-              </a>
-              <div className="mint-help">
-                If this box is empty, use the button above to mint on LaunchMyNFT.
-              </div>
-              <button
-                type="button"
-                className="btn-secondary mint-fallback-btn inline-toggle"
-                onClick={() => setShowInlineMint(true)}
-              >
-                Open Inline Mint
-              </button>
+              {showFallback && (
+                <div className="mint-fallbacks">
+                  <a
+                    className="btn-secondary mint-fallback-btn"
+                    href="https://launchmynft.io/collections/4r3G7i6wTn7Wek5zCXks3hMztdNbRAL3U9aCDFQbASzm/VAM19et9cpxGTtNAsTmR"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Open Mint Page
+                  </a>
+                  <button
+                    type="button"
+                    className="btn-secondary mint-fallback-btn inline-toggle"
+                    onClick={() => setShowInlineMint(true)}
+                  >
+                    Open Inline Mint
+                  </button>
+                  <div className="mint-help">Having trouble? Use one of the fallback options above.</div>
+                </div>
+              )}
             </div>
           </div>
           {showInlineMint && (

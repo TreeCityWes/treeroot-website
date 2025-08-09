@@ -76,6 +76,23 @@
   margin-bottom: 0.75rem;
 }
 
+.mint-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  justify-content: center;
+  margin-bottom: 0.75rem;
+}
+
+.pill {
+  border: 1px solid rgba(57, 255, 20, 0.35);
+  color: #39ff14;
+  padding: 4px 8px;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  background: rgba(57, 255, 20, 0.08);
+}
+
 .mint-widgets {
   display: flex;
   flex-direction: column;
@@ -119,6 +136,13 @@
   border-radius: 8px;
   text-decoration: none;
   display: inline-block;
+}
+
+.mint-fallbacks {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  align-items: center;
 }
 
 .mint-help {
