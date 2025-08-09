@@ -36,23 +36,26 @@ function Hero() {
               <button
                 type="button"
                 className="btn-secondary mint-fallback-btn inline-toggle"
-                onClick={() => setShowInlineMint(!showInlineMint)}
+                onClick={() => setShowInlineMint(true)}
               >
-                {showInlineMint ? 'Hide Inline Mint' : 'Show Inline Mint'}
+                Open Inline Mint
               </button>
-              {showInlineMint && (
-                <div className="mint-iframe-wrap">
-                  <iframe
-                    className="mint-iframe"
-                    title="LaunchMyNFT Mint"
-                    src="https://launchmynft.io/collections/4r3G7i6wTn7Wek5zCXks3hMztdNbRAL3U9aCDFQbASzm/VAM19et9cpxGTtNAsTmR"
-                    loading="lazy"
-                    referrerPolicy="no-referrer"
-                  />
-                </div>
-              )}
             </div>
           </div>
+          {showInlineMint && (
+            <div className="mint-modal-overlay" onClick={() => setShowInlineMint(false)}>
+              <div className="mint-modal" onClick={(e) => e.stopPropagation()}>
+                <button className="mint-modal-close" onClick={() => setShowInlineMint(false)}>✕</button>
+                <iframe
+                  className="mint-modal-iframe"
+                  title="LaunchMyNFT Mint"
+                  src="https://launchmynft.io/collections/4r3G7i6wTn7Wek5zCXks3hMztdNbRAL3U9aCDFQbASzm/VAM19et9cpxGTtNAsTmR"
+                  loading="lazy"
+                  referrerPolicy="no-referrer"
+                />
+              </div>
+            </div>
+          )}
 
           <div className="hero-buttons">
             <a href="https://pump.fun/coin/J7hX5qVuJuiUiuZ1AkqE7eVS3sjTJ5kgFnuJwR2Rpump" target="_blank" rel="noopener noreferrer" className="btn-primary">
