@@ -19,16 +19,15 @@ function Hero() {
               <div id="mint-counter" className="mint-counter">
                 <span className="mint-counter-fallback">Mint status loading…</span>
               </div>
-              <div id="mint-button-container" className="mint-button">
-                <a
-                  className="btn-secondary mint-fallback-btn"
-                  href="https://launchmynft.io/collections/4r3G7i6wTn7Wek5zCXks3hMztdNbRAL3U9aCDFQbASzm/VAM19et9cpxGTtNAsTmR"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Open Mint Page
-                </a>
-              </div>
+              <div id="mint-button-container" className="mint-button"></div>
+              <a
+                className="btn-secondary mint-fallback-btn"
+                href="https://launchmynft.io/collections/4r3G7i6wTn7Wek5zCXks3hMztdNbRAL3U9aCDFQbASzm/VAM19et9cpxGTtNAsTmR"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Open Mint Page
+              </a>
               <div className="mint-help">
                 If this box is empty, use the button above to mint on LaunchMyNFT.
               </div>
