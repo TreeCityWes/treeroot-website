@@ -7,6 +7,7 @@ function Hero() {
   const [showFallback, setShowFallback] = useState(false)
   const [walletAddress, setWalletAddress] = useState('')
   const [isConnecting, setIsConnecting] = useState(false)
+  const [wlEligible, setWlEligible] = useState(null) // null = unknown, true/false = status
 
   useEffect(() => {
     const checkReady = () => {
@@ -31,6 +32,76 @@ function Hero() {
 
     return () => clearInterval(iv)
   }, [])
+
+  // Try to detect WL eligibility signals from the LaunchMyNFT widget
+  useEffect(() => {
+    const tryReadGlobal = () => {
+      const g = window
+      // Common guesses of where widget may expose state
+      const candidates = [
+        g?.LMNF,
+        g?.LMNF_STATE,
+        g?.lmnf,
+        g?.launchmynft,
+        g?.__LMNF__
+      ]
+      for (const c of candidates) {
+        if (!c) continue
+        const val = c?.wl ?? c?.state?.wl ?? c?.allowlist?.eligible ?? c?.eligibility?.wl
+        if (typeof val === 'boolean') return val
+      }
+      // Look for data attributes on injected button
+      const btnHost = document.getElementById('mint-button-container')
+      const btn = btnHost?.querySelector('[data-wl], [data-eligible]')
+      const attrVal = btn?.getAttribute?.('data-wl') ?? btn?.getAttribute?.('data-eligible')
+      if (attrVal === 'true' || attrVal === 'false') return attrVal === 'true'
+      return null
+    }
+
+    let stopped = false
+    if (walletAddress) {
+      // Poll briefly after connect since widget may update async
+      let tries = 0
+      const iv = setInterval(() => {
+        tries += 1
+        const res = tryReadGlobal()
+        if (typeof res === 'boolean') {
+          setWlEligible(res)
+          clearInterval(iv)
+        } else if (tries >= 30) {
+          clearInterval(iv)
+        }
+      }, 300)
+
+      const onMessage = (e) => {
+        const d = e?.data
+        if (!d) return
+        const candidates = [d?.wl, d?.allowlist, d?.eligible, d?.isWl]
+        for (const v of candidates) {
+          if (typeof v === 'boolean') {
+            setWlEligible(v)
+            break
+          }
+        }
+      }
+      const onCustom = (e) => {
+        const v = e?.detail?.wl ?? e?.detail?.eligible
+        if (typeof v === 'boolean') setWlEligible(v)
+      }
+      window.addEventListener('message', onMessage)
+      window.addEventListener('lmnf:wl', onCustom)
+      window.addEventListener('LMNF_WL_CHANGED', onCustom)
+
+      return () => {
+        stopped = true
+        window.removeEventListener('message', onMessage)
+        window.removeEventListener('lmnf:wl', onCustom)
+        window.removeEventListener('LMNF_WL_CHANGED', onCustom)
+      }
+    } else {
+      setWlEligible(null)
+    }
+  }, [walletAddress])
 
   const getProvider = () => {
     const anyWindow = window
@@ -85,7 +156,9 @@ function Hero() {
             <div className="mint-meta">
               <span className="pill">Supply: 888</span>
               <span className="pill">Price: FREE WL / 0.05 SOL Public</span>
-              <span className="pill">WL: {walletAddress ? 'Connected' : 'Connect wallet'}</span>
+              <span className={`pill ${wlEligible === true ? 'pill-eligible' : wlEligible === false ? 'pill-not' : ''}`}>
+                WL: {wlEligible === true ? 'Eligible' : wlEligible === false ? 'Not eligible' : (walletAddress ? 'Checking…' : 'Connect wallet')}
+              </span>
             </div>
             <div className="wallet-row">
               {walletAddress ? (
