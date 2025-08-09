@@ -17,8 +17,13 @@ function Hero() {
               <span className="mint-counter-fallback">Mint status loading…</span>
             </div>
             <div id="mint-button-container" className="mint-button">
-              <a className="btn-secondary mint-fallback-btn" href="#mint" onClick={(e) => e.preventDefault()}>
-                Mint widget loading…
+              <a
+                className="btn-secondary mint-fallback-btn"
+                href="https://launchmynft.io/collections/4r3G7i6wTn7Wek5zCXks3hMztdNbRAL3U9aCDFQbASzm/VAM19et9cpxGTtNAsTmR"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Open Mint Page
               </a>
             </div>
           </div>
