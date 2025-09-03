@@ -1,0 +1,145 @@
+.header {
+  padding: 1rem 0;
+  background: rgba(11, 11, 10, 0.95);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(57, 255, 20, 0.2);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.header .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.logo-img {
+  width: 40px;
+  height: 40px;
+  filter: drop-shadow(0 0 10px rgba(57, 255, 20, 0.5));
+}
+
+.logo-text {
+  font-size: 1.5rem;
+  color: #39ff14 !important;
+  font-weight: bold;
+  text-shadow: 0 0 10px rgba(57, 255, 20, 0.5);
+}
+
+.header-links {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.social-links {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.social-link {
+  color: #39ff14 !important;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 500;
+  position: relative;
+  padding: 4px 0;
+}
+
+.social-link:hover {
+  color: #66ff99;
+  transform: translateY(-1px);
+}
+
+.social-link::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 1px;
+  bottom: 0;
+  left: 0;
+  background: #39ff14;
+  transition: width 0.3s ease;
+}
+
+.social-link:hover::after {
+  width: 100%;
+}
+
+/* Platform-specific hover colors */
+.social-link.telegram:hover {
+  color: #0088cc;
+  box-shadow: 0 0 10px rgba(0, 136, 204, 0.3);
+}
+
+.social-link.twitter:hover,
+.social-link.twitter-dev:hover {
+  color: #1da1f2;
+  box-shadow: 0 0 10px rgba(29, 161, 242, 0.3);
+}
+
+.social-link.youtube:hover {
+  color: #ff0000;
+  box-shadow: 0 0 10px rgba(255, 0, 0, 0.3);
+}
+
+.social-link.dexscreener:hover {
+  color: #ffd700;
+  box-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
+}
+
+.pump-btn {
+  white-space: nowrap;
+}
+
+@media (max-width: 768px) {
+  .header .container {
+    flex-direction: column;
+    gap: 0.8rem;
+  }
+  
+  .logo-text {
+    font-size: 1.2rem;
+  }
+  
+  .header-links {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+    width: 100%;
+  }
+  
+  .social-links {
+    order: 2;
+    gap: 1rem;
+  }
+  
+  .social-link {
+    font-size: 0.8rem;
+  }
+  
+  .pump-btn {
+    order: 1;
+  }
+}
+
+@media (max-width: 480px) {
+  .header-links {
+    flex-direction: column;
+    gap: 0.8rem;
+  }
+  
+  .social-links {
+    gap: 0.8rem;
+  }
+}
