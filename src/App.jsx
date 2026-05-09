@@ -1,9 +1,7 @@
 import Header from './components/Header'
-import Hero from './components/Hero'
-import TradingLinks from './components/TradingLinks'
-import NFTSection from './components/NFTSection'
 import Footer from './components/Footer'
 import NoiseOverlay from './components/NoiseOverlay'
+import ClaimPage from './components/ClaimPage'
 import './App.css'
 
 function App() {
@@ -12,9 +10,7 @@ function App() {
       <NoiseOverlay />
       <Header />
       <main>
-        <Hero />
-        <TradingLinks />
-        <NFTSection />
+        <ClaimPage />
       </main>
       <Footer />
     </div>

@@ -1,0 +1,212 @@
+.claim-page {
+  min-height: 70vh;
+  padding: 4rem 0 6rem;
+}
+
+.claim-title {
+  font-size: clamp(1.6rem, 5vw, 3rem);
+  color: #39ff14;
+  text-align: center;
+  text-shadow: 0 0 12px rgba(57, 255, 20, 0.6);
+  letter-spacing: 0.05em;
+  margin-bottom: 1rem;
+}
+
+.claim-subtitle {
+  max-width: 760px;
+  margin: 0 auto 3rem;
+  text-align: center;
+  color: #a6a6a6;
+  font-size: 1rem;
+  line-height: 1.7;
+}
+
+.claim-box {
+  max-width: 720px;
+  margin: 0 auto;
+  border: 1px solid rgba(57, 255, 20, 0.25);
+  background: rgba(11, 11, 10, 0.6);
+  backdrop-filter: blur(2px);
+  box-shadow: 0 0 30px rgba(57, 255, 20, 0.05);
+  padding: 2rem;
+}
+
+.claim-step {
+  border-bottom: 1px dashed rgba(57, 255, 20, 0.15);
+  padding: 1.25rem 0;
+}
+
+.claim-step:first-child {
+  padding-top: 0;
+}
+
+.claim-step:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.claim-step-label {
+  font-size: 0.8rem;
+  letter-spacing: 0.15em;
+  color: #39ff14;
+  text-transform: uppercase;
+  margin-bottom: 0.75rem;
+}
+
+.claim-addr,
+.claim-list-mint,
+.claim-list-owner {
+  font-family: 'Share Tech Mono', monospace;
+  color: #b6f7a3;
+  word-break: break-all;
+  font-size: 0.85rem;
+}
+
+.claim-list-owner {
+  color: #6f7c6c;
+  font-size: 0.75rem;
+  margin-top: 0.25rem;
+}
+
+.claim-empty {
+  color: #a6a6a6;
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+.claim-error {
+  color: #ff6464;
+}
+
+.claim-error .claim-step-label {
+  color: #ff6464;
+}
+
+.claim-success .claim-step-label {
+  color: #39ff14;
+}
+
+.claim-list {
+  list-style: none;
+  margin: 0.75rem 0 0;
+  padding: 0;
+  display: grid;
+  gap: 0.75rem;
+}
+
+.claim-list-item {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  border: 1px solid rgba(57, 255, 20, 0.15);
+  padding: 0.75rem;
+  background: rgba(57, 255, 20, 0.03);
+}
+
+.claim-list-item img {
+  width: 64px;
+  height: 64px;
+  object-fit: cover;
+  border: 1px solid rgba(57, 255, 20, 0.2);
+}
+
+.claim-list-name {
+  color: #d6ffd0;
+  font-size: 0.95rem;
+  margin-bottom: 0.25rem;
+}
+
+.claim-already {
+  margin-top: 1rem;
+}
+
+.claim-already summary {
+  cursor: pointer;
+  color: #6f7c6c;
+  font-size: 0.85rem;
+  letter-spacing: 0.1em;
+}
+
+.claim-dest-toggle {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+  color: #a6a6a6;
+  cursor: pointer;
+  margin-bottom: 0.75rem;
+}
+
+.claim-dest-input {
+  width: 100%;
+  background: rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(57, 255, 20, 0.25);
+  color: #d6ffd0;
+  font-family: 'Share Tech Mono', monospace;
+  padding: 0.6rem 0.75rem;
+  margin-bottom: 1rem;
+  font-size: 0.9rem;
+}
+
+.claim-dest-input:focus {
+  outline: none;
+  border-color: rgba(57, 255, 20, 0.6);
+}
+
+.claim-action {
+  width: 100%;
+  margin-top: 0.5rem;
+  font-size: 0.95rem;
+  letter-spacing: 0.1em;
+}
+
+.claim-action:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.claim-connect.wallet-adapter-button,
+.claim-connect.wallet-adapter-button-trigger {
+  background: linear-gradient(45deg, #39ff14, #00b140);
+  color: #0b0b0a;
+  font-family: 'Share Tech Mono', monospace;
+  font-weight: bold;
+  border-radius: 4px;
+  box-shadow: 0 0 15px rgba(57, 255, 20, 0.3);
+}
+
+.claim-connect-small.wallet-adapter-button,
+.claim-connect-small.wallet-adapter-button-trigger {
+  font-size: 0.75rem;
+  padding: 6px 12px;
+  height: auto;
+}
+
+.claim-tx-list {
+  list-style: none;
+  padding: 0;
+  margin-top: 0.75rem;
+  display: grid;
+  gap: 0.5rem;
+}
+
+.claim-tx-list a {
+  color: #b6f7a3;
+  text-decoration: none;
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 0.8rem;
+  word-break: break-all;
+}
+
+.claim-tx-list a:hover {
+  color: #39ff14;
+  text-shadow: 0 0 6px rgba(57, 255, 20, 0.6);
+}
+
+.claim-meta {
+  max-width: 720px;
+  margin: 2rem auto 0;
+  text-align: center;
+  color: #6f7c6c;
+  font-size: 0.85rem;
+}
