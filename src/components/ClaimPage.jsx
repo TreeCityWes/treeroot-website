@@ -122,6 +122,26 @@ export default function ClaimPage() {
             <div className="claim-step">
               <p className="claim-step-label">step 01 // connect</p>
               <WalletMultiButton className="claim-connect" />
+              <p className="claim-wallet-note">
+                Use the same wallet that holds your Root Guardian on Solana. X1
+                supports <strong>X1 Wallet</strong> and <strong>Backpack</strong>.
+              </p>
+              <ul className="claim-wallet-links">
+                <li>
+                  <a href="https://x1.xyz" target="_blank" rel="noopener noreferrer">
+                    Install X1 Wallet →
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="https://chromewebstore.google.com/detail/backpack/aflkmfhebedbjioipglgcbcmnbpgliof"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Install Backpack →
+                  </a>
+                </li>
+              </ul>
             </div>
           )}
 

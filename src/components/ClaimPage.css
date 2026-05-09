@@ -210,3 +210,38 @@
   color: #6f7c6c;
   font-size: 0.85rem;
 }
+
+.claim-wallet-note {
+  margin-top: 0.9rem;
+  font-size: 0.85rem;
+  color: #8a9985;
+  line-height: 1.6;
+}
+
+.claim-wallet-note strong {
+  color: #b6f7a3;
+  font-weight: normal;
+}
+
+.claim-wallet-links {
+  list-style: none;
+  margin: 0.6rem 0 0;
+  padding: 0;
+  display: flex;
+  gap: 1.25rem;
+  flex-wrap: wrap;
+}
+
+.claim-wallet-links a {
+  color: #b6f7a3;
+  text-decoration: none;
+  font-size: 0.85rem;
+  letter-spacing: 0.05em;
+  border-bottom: 1px dashed rgba(57, 255, 20, 0.3);
+  padding-bottom: 1px;
+}
+
+.claim-wallet-links a:hover {
+  color: #39ff14;
+  border-bottom-color: #39ff14;
+}
