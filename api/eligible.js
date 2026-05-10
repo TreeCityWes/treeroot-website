@@ -1,18 +1,9 @@
 import { createUmi } from '@metaplex-foundation/umi-bundle-defaults'
 import { mplCore, fetchAsset } from '@metaplex-foundation/mpl-core'
 import { publicKey } from '@metaplex-foundation/umi'
-import { readFileSync } from 'fs'
-import path from 'path'
+import { snapshot } from '../data/snapshot.js'
 
 const X1_RPC = process.env.X1_RPC_URL || 'https://rpc.mainnet.x1.xyz'
-
-let cachedSnapshot = null
-function loadSnapshot() {
-  if (cachedSnapshot) return cachedSnapshot
-  const p = path.join(process.cwd(), 'data', 'snapshot.json')
-  cachedSnapshot = JSON.parse(readFileSync(p, 'utf8'))
-  return cachedSnapshot
-}
 
 export default async function handler(req, res) {
   if (req.method !== 'POST') {
@@ -27,7 +18,6 @@ export default async function handler(req, res) {
       return
     }
 
-    const snapshot = loadSnapshot()
     const claimable = snapshot[solanaAddress] || []
     if (claimable.length === 0) {
       res.json({ items: [] })

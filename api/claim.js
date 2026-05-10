@@ -5,20 +5,11 @@ import { Keypair } from '@solana/web3.js'
 import { fromWeb3JsKeypair } from '@metaplex-foundation/umi-web3js-adapters'
 import bs58 from 'bs58'
 import nacl from 'tweetnacl'
-import { readFileSync } from 'fs'
-import path from 'path'
+import { snapshot } from '../data/snapshot.js'
 
 const X1_RPC = process.env.X1_RPC_URL || 'https://rpc.mainnet.x1.xyz'
 const MIGRATION_PUBKEY = 'GZCPdavohBZpRttdzJJEaT6Xoedcida9rvnfPQTFrcU9'
 const COLLECTION_ADDRESS = process.env.X1_ROOTGUARDIAN_COLLECTION || ''
-
-let cachedSnapshot = null
-function loadSnapshot() {
-  if (cachedSnapshot) return cachedSnapshot
-  const p = path.join(process.cwd(), 'data', 'snapshot.json')
-  cachedSnapshot = JSON.parse(readFileSync(p, 'utf8'))
-  return cachedSnapshot
-}
 
 let cachedUmi = null
 function getUmi() {
@@ -92,7 +83,6 @@ export default async function handler(req, res) {
       return
     }
 
-    const snapshot = loadSnapshot()
     const claimable = snapshot[solanaAddress] || []
     if (claimable.length === 0) {
       res.status(403).json({ error: 'no claimable NFTs for this wallet in the snapshot' })

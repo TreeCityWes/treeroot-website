@@ -165,21 +165,59 @@
   cursor: not-allowed;
 }
 
-.claim-connect.wallet-adapter-button,
-.claim-connect.wallet-adapter-button-trigger {
-  background: linear-gradient(45deg, #39ff14, #00b140);
-  color: #0b0b0a;
-  font-family: 'Share Tech Mono', monospace;
-  font-weight: bold;
-  border-radius: 4px;
-  box-shadow: 0 0 15px rgba(57, 255, 20, 0.3);
+/* Override default wallet-adapter purple with the cyber-forest neon green */
+.claim-page .wallet-adapter-button,
+.claim-page .wallet-adapter-button-trigger {
+  background: linear-gradient(45deg, #39ff14, #00b140) !important;
+  background-color: #39ff14 !important;
+  color: #0b0b0a !important;
+  font-family: 'Share Tech Mono', monospace !important;
+  font-weight: bold !important;
+  border-radius: 4px !important;
+  box-shadow: 0 0 15px rgba(57, 255, 20, 0.35) !important;
+  letter-spacing: 0.05em !important;
+}
+
+.claim-page .wallet-adapter-button:not([disabled]):hover,
+.claim-page .wallet-adapter-button-trigger:not([disabled]):hover {
+  background: linear-gradient(45deg, #66ff99, #39ff14) !important;
+  background-color: #66ff99 !important;
+  color: #0b0b0a !important;
+  box-shadow: 0 0 25px rgba(57, 255, 20, 0.6) !important;
+}
+
+.claim-page .wallet-adapter-button-start-icon,
+.claim-page .wallet-adapter-button-end-icon {
+  filter: brightness(0.2);
 }
 
 .claim-connect-small.wallet-adapter-button,
 .claim-connect-small.wallet-adapter-button-trigger {
-  font-size: 0.75rem;
-  padding: 6px 12px;
-  height: auto;
+  font-size: 0.75rem !important;
+  padding: 6px 12px !important;
+  height: auto !important;
+}
+
+/* Modal recoloring so the wallet picker matches */
+.wallet-adapter-modal-wrapper {
+  background: #0b0b0a !important;
+  border: 1px solid rgba(57, 255, 20, 0.3) !important;
+  font-family: 'Share Tech Mono', monospace !important;
+}
+
+.wallet-adapter-modal-title {
+  color: #39ff14 !important;
+}
+
+.wallet-adapter-modal-list .wallet-adapter-button {
+  background: rgba(57, 255, 20, 0.05) !important;
+  color: #d6ffd0 !important;
+  border: 1px solid rgba(57, 255, 20, 0.15) !important;
+}
+
+.wallet-adapter-modal-list .wallet-adapter-button:hover {
+  background: rgba(57, 255, 20, 0.12) !important;
+  border-color: rgba(57, 255, 20, 0.4) !important;
 }
 
 .claim-tx-list {
