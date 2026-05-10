@@ -1,4 +1,4 @@
-import ClaimHeader from './components/ClaimHeader'
+import Header from './components/Header'
 import Footer from './components/Footer'
 import NoiseOverlay from './components/NoiseOverlay'
 import ClaimPage from './components/ClaimPage'
@@ -8,7 +8,7 @@ function App() {
   return (
     <div className="App">
       <NoiseOverlay />
-      <ClaimHeader />
+      <Header />
       <main>
         <ClaimPage />
       </main>

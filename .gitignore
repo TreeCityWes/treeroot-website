@@ -16,6 +16,12 @@ dist-ssr
 !.env.example
 .vercel
 
+# Source PNGs for the Root Guardian preview gallery — only the optimized
+# WebPs (also in public/preview) are committed and shipped. The PNGs are
+# reproducible by re-running scripts/optimize-preview.mjs from a fresh
+# pull of the originals.
+public/preview/*.png
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json

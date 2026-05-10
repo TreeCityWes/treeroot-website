@@ -1,10 +1,24 @@
 import { useEffect, useMemo, useState } from 'react'
 import { useWallet } from '@solana/wallet-adapter-react'
-import { WalletMultiButton } from '@solana/wallet-adapter-react-ui'
+import { useWalletModal } from '@solana/wallet-adapter-react-ui'
 import bs58 from 'bs58'
 import './ClaimPage.css'
 
 const MIGRATION_PUBKEY = 'GZCPdavohBZpRttdzJJEaT6Xoedcida9rvnfPQTFrcU9'
+
+const GALLERY = [
+  '/preview/rootguardian-19.webp',
+  '/preview/rootguardian-128.webp',
+  '/preview/rootguardian-420.webp',
+  '/preview/rootguardian-488.webp',
+  '/preview/rootguardian-565.webp',
+  '/preview/rootguardian-656.webp',
+]
+
+function shorten(addr) {
+  if (!addr) return ''
+  return `${addr.slice(0, 4)}…${addr.slice(-4)}`
+}
 
 function buildClaimMessage(solanaAddress, x1Address, nonce) {
   return [
@@ -22,7 +36,9 @@ function buildClaimMessage(solanaAddress, x1Address, nonce) {
 }
 
 export default function ClaimPage() {
-  const { publicKey, signMessage, connected } = useWallet()
+  const { publicKey, signMessage, connected, disconnect } = useWallet()
+  const { setVisible } = useWalletModal()
+
   const [status, setStatus] = useState('idle')
   const [eligible, setEligible] = useState(null)
   const [error, setError] = useState(null)
@@ -106,116 +122,113 @@ export default function ClaimPage() {
   }
 
   return (
-    <section className="claim-page">
-      <div className="container">
-        <h1 className="claim-title glitch" data-text="ROOT GUARDIAN // X1 CLAIM">
-          ROOT GUARDIAN // X1 CLAIM
-        </h1>
-        <p className="claim-subtitle">
-          Claim your Root Guardian NFT on X1. Connect the same Solana wallet that holds the
-          original — sign a message to prove ownership, and the matching X1 token transfers to
-          your destination address. No SOL or X1 fees from your side.
-        </p>
+    <>
+      <section className="claim-hero">
+        <div className="container claim-hero-grid">
+          <div className="claim-hero-text">
+            <p className="claim-kicker">X1 NFT Claim</p>
+            <h1 className="claim-h1">Claim Your Root Guardian on X1</h1>
+            <p className="claim-lead">
+              Connect the same Solana wallet that holds the original. We'll match it to the
+              X1 mint and transfer it to your destination — no gas from your side, no
+              on-chain Solana transaction.
+            </p>
+            <div className="claim-hero-cta">
+              {!connected ? (
+                <button type="button" className="btn-primary" onClick={() => setVisible(true)}>
+                  Connect Wallet
+                </button>
+              ) : (
+                <div className="claim-connected">
+                  <span className="claim-connected-addr">{shorten(solanaAddress)}</span>
+                  <button type="button" className="claim-disconnect" onClick={() => disconnect()}>
+                    Disconnect
+                  </button>
+                </div>
+              )}
+            </div>
+          </div>
+          <div className="claim-hero-art">
+            <img
+              src="/preview/rootguardian-858.webp"
+              alt="Root Guardian #858"
+              loading="eager"
+              width={1280}
+              height={1280}
+            />
+          </div>
+        </div>
+      </section>
 
-        <div className="claim-box">
-          {!connected && (
-            <div className="claim-step">
-              <p className="claim-step-label">step 01 // connect</p>
-              <WalletMultiButton className="claim-connect" />
-              <p className="claim-wallet-note">
-                Use the same wallet that holds your Root Guardian on Solana. X1
-                supports <strong>X1 Wallet</strong> and <strong>Backpack</strong>.
-              </p>
-              <ul className="claim-wallet-links">
-                <li>
-                  <a href="https://x1.xyz" target="_blank" rel="noopener noreferrer">
-                    Install X1 Wallet →
-                  </a>
-                </li>
-                <li>
+      <section className="claim-body">
+        <div className="container">
+          <div className="claim-card">
+            {!connected && (
+              <div className="claim-state claim-state-disconnected">
+                <h2 className="claim-section-heading">Connect to check eligibility</h2>
+                <p className="claim-body-text">
+                  X1 ships against{' '}
+                  <a href="https://x1.xyz" target="_blank" rel="noopener noreferrer" className="claim-link">
+                    X1 Wallet
+                  </a>{' '}
+                  and{' '}
                   <a
                     href="https://chromewebstore.google.com/detail/backpack/aflkmfhebedbjioipglgcbcmnbpgliof"
                     target="_blank"
                     rel="noopener noreferrer"
+                    className="claim-link"
                   >
-                    Install Backpack →
+                    Backpack
                   </a>
-                </li>
-              </ul>
-            </div>
-          )}
-
-          {connected && solanaAddress && (
-            <>
-              <div className="claim-step">
-                <p className="claim-step-label">step 01 // connected</p>
-                <code className="claim-addr">{solanaAddress}</code>
-                <WalletMultiButton className="claim-connect claim-connect-small" />
+                  . Use the same wallet that holds your Root Guardian on Solana.
+                </p>
               </div>
+            )}
 
-              {status === 'loading' && (
-                <div className="claim-step">
-                  <p className="claim-step-label">step 02 // checking eligibility…</p>
-                </div>
-              )}
+            {connected && status === 'loading' && (
+              <div className="claim-state">
+                <p className="claim-body-text">Checking eligibility for {shorten(solanaAddress)}…</p>
+                <div className="claim-shimmer" />
+              </div>
+            )}
 
-              {status === 'error' && error && (
-                <div className="claim-step claim-error">
-                  <p className="claim-step-label">error</p>
-                  <p>{error}</p>
-                </div>
-              )}
+            {connected && status === 'error' && error && (
+              <div className="claim-state claim-state-error">
+                <h2 className="claim-section-heading">Something went wrong</h2>
+                <p className="claim-body-text">{error}</p>
+              </div>
+            )}
 
-              {eligible && (
-                <>
-                  <div className="claim-step">
-                    <p className="claim-step-label">
-                      step 02 // eligibility ({claimable.length} claimable
-                      {alreadyClaimed.length ? `, ${alreadyClaimed.length} already claimed` : ''})
+            {connected && eligible && status !== 'claimed' && (
+              <>
+                {claimable.length === 0 && alreadyClaimed.length === 0 && (
+                  <div className="claim-state">
+                    <h2 className="claim-section-heading">Nothing to claim from this wallet</h2>
+                    <p className="claim-body-text">
+                      This wallet doesn't hold any Root Guardians in the Phase 2 snapshot. If
+                      you bought after the snapshot or hold via a different wallet, switch
+                      wallets and try again.
                     </p>
-                    {claimable.length === 0 && alreadyClaimed.length === 0 && (
-                      <p className="claim-empty">
-                        This wallet doesn’t hold any Root Guardian NFTs in our snapshot. If you
-                        bought after the snapshot or hold via a different wallet, switch wallets
-                        and try again.
-                      </p>
-                    )}
-                    {claimable.length > 0 && (
-                      <ul className="claim-list">
-                        {claimable.map((it) => (
-                          <li key={it.x1MintAddress} className="claim-list-item">
-                            <img src={it.image} alt={it.name} />
-                            <div>
-                              <div className="claim-list-name">{it.name}</div>
-                              <code className="claim-list-mint">{it.x1MintAddress}</code>
-                            </div>
-                          </li>
-                        ))}
-                      </ul>
-                    )}
-                    {alreadyClaimed.length > 0 && (
-                      <details className="claim-already">
-                        <summary>{alreadyClaimed.length} already claimed</summary>
-                        <ul className="claim-list">
-                          {alreadyClaimed.map((it) => (
-                            <li key={it.x1MintAddress} className="claim-list-item">
-                              <img src={it.image} alt={it.name} />
-                              <div>
-                                <div className="claim-list-name">{it.name}</div>
-                                <code className="claim-list-mint">{it.x1MintAddress}</code>
-                                <div className="claim-list-owner">→ {it.currentOwner}</div>
-                              </div>
-                            </li>
-                          ))}
-                        </ul>
-                      </details>
-                    )}
                   </div>
+                )}
 
-                  {claimable.length > 0 && status !== 'claimed' && (
-                    <div className="claim-step">
-                      <p className="claim-step-label">step 03 // destination</p>
-                      <label className="claim-dest-toggle">
+                {claimable.length > 0 && (
+                  <div className="claim-state">
+                    <h2 className="claim-section-heading">Your Root Guardians</h2>
+                    <div className="claim-grid">
+                      {claimable.map((it) => (
+                        <div key={it.x1MintAddress} className="claim-grid-card">
+                          <img src={it.image} alt={it.name} loading="lazy" />
+                          <div className="claim-grid-card-meta">
+                            <p className="claim-grid-card-name">{it.name}</p>
+                            <p className="claim-kicker claim-kicker-ready">Ready to claim</p>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+
+                    <div className="claim-destination">
+                      <label className="claim-destination-toggle">
                         <input
                           type="checkbox"
                           checked={useDifferentDest}
@@ -224,12 +237,12 @@ export default function ClaimPage() {
                             if (!e.target.checked) setDestAddress(solanaAddress)
                           }}
                         />
-                        send to a different X1 address (advanced)
+                        Send to a different X1 address (advanced)
                       </label>
                       {useDifferentDest && (
                         <input
-                          className="claim-dest-input"
                           type="text"
+                          className="claim-destination-input"
                           placeholder="X1 destination address"
                           value={destAddress}
                           onChange={(e) => setDestAddress(e.target.value)}
@@ -237,48 +250,102 @@ export default function ClaimPage() {
                         />
                       )}
                       <button
+                        type="button"
                         className="btn-primary claim-action"
                         onClick={handleClaim}
                         disabled={status === 'signing' || status === 'submitting'}
                       >
                         {status === 'signing'
-                          ? 'awaiting signature…'
+                          ? 'Awaiting signature…'
                           : status === 'submitting'
-                          ? 'transferring…'
-                          : `sign & claim ${claimable.length}`}
+                          ? 'Transferring…'
+                          : `Sign & Claim ${claimable.length}`}
                       </button>
                     </div>
-                  )}
+                  </div>
+                )}
 
-                  {status === 'claimed' && (
-                    <div className="claim-step claim-success">
-                      <p className="claim-step-label">claimed</p>
-                      <p>{txSigs.length} transfer{txSigs.length === 1 ? '' : 's'} confirmed on X1.</p>
-                      <ul className="claim-tx-list">
-                        {txSigs.map((sig) => (
-                          <li key={sig}>
-                            <a
-                              href={`https://explorer.x1.xyz/tx/${sig}`}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                            >
-                              {sig}
-                            </a>
-                          </li>
-                        ))}
-                      </ul>
+                {alreadyClaimed.length > 0 && (
+                  <details className="claim-already">
+                    <summary>{alreadyClaimed.length} already claimed</summary>
+                    <div className="claim-grid">
+                      {alreadyClaimed.map((it) => (
+                        <div key={it.x1MintAddress} className="claim-grid-card claim-grid-card-muted">
+                          <img src={it.image} alt={it.name} loading="lazy" />
+                          <div className="claim-grid-card-meta">
+                            <p className="claim-grid-card-name">{it.name}</p>
+                            <p className="claim-kicker">Already claimed</p>
+                          </div>
+                        </div>
+                      ))}
                     </div>
-                  )}
-                </>
-              )}
-            </>
-          )}
-        </div>
+                  </details>
+                )}
+              </>
+            )}
 
-        <div className="claim-meta">
-          <p>Claim window closes 2026-06-01. Unclaimed NFTs roll into a public mint at 2 XNT.</p>
+            {status === 'claimed' && (
+              <div className="claim-state">
+                <h2 className="claim-section-heading">Claimed</h2>
+                <p className="claim-body-text">
+                  {txSigs.length} transfer{txSigs.length === 1 ? '' : 's'} confirmed on X1.
+                </p>
+                <ul className="claim-tx-list">
+                  {txSigs.map((sig) => (
+                    <li key={sig}>
+                      <a
+                        href={`https://explorer.x1.xyz/tx/${sig}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="claim-link"
+                      >
+                        {sig}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
+
+      <section className="claim-timeline">
+        <div className="container">
+          <h2 className="section-title">Phase 2 Timeline</h2>
+          <div className="claim-timeline-grid">
+            <div className="claim-timeline-item claim-timeline-done">
+              <p className="claim-kicker">Phase 1</p>
+              <p className="claim-timeline-label">Airdrop to active X1 wallets</p>
+            </div>
+            <div className="claim-timeline-item claim-timeline-active">
+              <p className="claim-kicker">Phase 2</p>
+              <p className="claim-timeline-label">Claim window — closes 2026-06-01</p>
+            </div>
+            <div className="claim-timeline-item claim-timeline-upcoming">
+              <p className="claim-kicker">Phase 3</p>
+              <p className="claim-timeline-label">Public mint — 2 XNT each</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="claim-collection">
+        <div className="container">
+          <h2 className="section-title">From the Collection</h2>
+          <p className="claim-collection-caption">
+            Each Guardian is a one-of-one rendering. The collection ships in seven palettes,
+            sixteen backgrounds, and a long list of subtler traits.
+          </p>
+          <div className="claim-collection-grid">
+            {GALLERY.map((src) => (
+              <div key={src} className="claim-collection-tile">
+                <img src={src} alt="Root Guardian" loading="lazy" width={640} height={640} />
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+    </>
   )
 }

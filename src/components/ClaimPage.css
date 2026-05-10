@@ -1,287 +1,488 @@
-.claim-page {
-  min-height: 70vh;
-  padding: 4rem 0 6rem;
+/* ============================================================
+ * ClaimPage — X1 NFT Claim, Phase 2
+ *
+ * Design system locked to existing components. See
+ * `gentle-fluttering-cake.md` plan file. Rules:
+ *   • Single accent green: #39ff14 (and #66ff99 for hover only).
+ *   • Single surface envelope: the `.nft-card` pattern from
+ *     NFTSection.css (border 1.5px green/0.25, radius 18, dark bg,
+ *     soft outer glow).
+ *   • Reuse `.btn-primary` / `.btn-secondary` from App.css.
+ *   • No `!important`. Cascade order does the work — this file is
+ *     imported after the wallet-adapter-react-ui stylesheet via the
+ *     component graph, so plain class overrides win.
+ * ============================================================ */
+
+/* ===== Hero ===== */
+.claim-hero {
+  padding: 4rem 0 5rem;
 }
 
-.claim-title {
-  font-size: clamp(1.5rem, 4vw, 2.4rem);
-  color: #39ff14;
-  text-align: left;
-  text-shadow: 0 0 12px rgba(57, 255, 20, 0.6);
-  letter-spacing: 0.05em;
-  margin: 0 auto 1rem;
-  max-width: 720px;
-  width: 100%;
-}
-
-.claim-subtitle {
-  max-width: 720px;
-  margin: 0 auto 2rem;
-  text-align: left;
-  color: #a6a6a6;
-  font-size: 1rem;
-  line-height: 1.7;
-}
-
-.claim-box {
-  max-width: 720px;
-  margin: 0 auto;
-  border: 1px solid rgba(57, 255, 20, 0.25);
-  background: rgba(11, 11, 10, 0.6);
-  backdrop-filter: blur(2px);
-  box-shadow: 0 0 30px rgba(57, 255, 20, 0.05);
-  padding: 2rem;
-}
-
-.claim-step {
-  border-bottom: 1px dashed rgba(57, 255, 20, 0.15);
-  padding: 1.25rem 0;
-}
-
-.claim-step:first-child {
-  padding-top: 0;
-}
-
-.claim-step:last-child {
-  border-bottom: none;
-  padding-bottom: 0;
-}
-
-.claim-step-label {
-  font-size: 0.8rem;
-  letter-spacing: 0.15em;
-  color: #39ff14;
-  text-transform: uppercase;
-  margin-bottom: 0.75rem;
-}
-
-.claim-addr,
-.claim-list-mint,
-.claim-list-owner {
-  font-family: 'Share Tech Mono', monospace;
-  color: #b6f7a3;
-  word-break: break-all;
-  font-size: 0.85rem;
-}
-
-.claim-list-owner {
-  color: #6f7c6c;
-  font-size: 0.75rem;
-  margin-top: 0.25rem;
-}
-
-.claim-empty {
-  color: #a6a6a6;
-  font-size: 0.95rem;
-  line-height: 1.6;
-}
-
-.claim-error {
-  color: #ff6464;
-}
-
-.claim-error .claim-step-label {
-  color: #ff6464;
-}
-
-.claim-success .claim-step-label {
-  color: #39ff14;
-}
-
-.claim-list {
-  list-style: none;
-  margin: 0.75rem 0 0;
-  padding: 0;
+.claim-hero-grid {
   display: grid;
-  gap: 0.75rem;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  align-items: center;
 }
 
-.claim-list-item {
+.claim-kicker {
+  font-size: 0.85rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #39ff14;
+  margin-bottom: 1rem;
+}
+
+.claim-h1 {
+  font-size: clamp(2.4rem, 5vw, 3.5rem);
+  color: #39ff14;
+  text-shadow: 0 0 30px rgba(57, 255, 20, 0.5);
+  margin-bottom: 1.5rem;
+  line-height: 1.15;
+}
+
+.claim-lead {
+  font-size: 1.1rem;
+  color: #ffffff;
+  line-height: 1.6;
+  margin-bottom: 2rem;
+  max-width: 540px;
+}
+
+.claim-hero-cta {
   display: flex;
   gap: 1rem;
   align-items: center;
-  border: 1px solid rgba(57, 255, 20, 0.15);
-  padding: 0.75rem;
-  background: rgba(57, 255, 20, 0.03);
+  flex-wrap: wrap;
 }
 
-.claim-list-item img {
-  width: 64px;
-  height: 64px;
-  object-fit: cover;
-  border: 1px solid rgba(57, 255, 20, 0.2);
-}
-
-.claim-list-name {
-  color: #d6ffd0;
+.claim-connected {
+  display: inline-flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.6rem 1rem;
+  border: 1px solid rgba(57, 255, 20, 0.3);
+  border-radius: 4px;
+  background: rgba(11, 11, 10, 0.8);
   font-size: 0.95rem;
-  margin-bottom: 0.25rem;
+  color: #39ff14;
 }
 
-.claim-already {
+.claim-disconnect {
+  background: transparent;
+  border: none;
+  color: #a6a6a6;
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 0.85rem;
+  cursor: pointer;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-color: rgba(166, 166, 166, 0.4);
+  transition: all 0.3s ease;
+  padding: 0;
+}
+
+.claim-disconnect:hover {
+  color: #66ff99;
+  text-decoration-color: #66ff99;
+}
+
+.claim-hero-art {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.claim-hero-art img {
+  width: 100%;
+  max-width: 480px;
+  height: auto;
+  border: 1.5px solid rgba(57, 255, 20, 0.25);
+  border-radius: 18px;
+  box-shadow: 0 0 60px rgba(57, 255, 20, 0.15);
+  display: block;
+}
+
+/* ===== Eligibility section ===== */
+.claim-body {
+  padding: 0 0 5rem;
+}
+
+/* Mirrors .nft-card from NFTSection.css — single shared envelope. */
+.claim-card {
+  max-width: 880px;
+  margin: 0 auto;
+  background: rgba(0, 0, 0, 0.5);
+  border: 1.5px solid rgba(57, 255, 20, 0.25);
+  border-radius: 18px;
+  padding: 2.5rem 2rem;
+  box-shadow: 0 0 24px rgba(57, 255, 20, 0.05);
+}
+
+.claim-section-heading {
+  font-size: 1.5rem;
+  color: #39ff14;
+  margin-bottom: 1rem;
+  text-shadow: 0 0 8px rgba(57, 255, 20, 0.5);
+}
+
+.claim-state-error .claim-section-heading {
+  color: #ff6464;
+  text-shadow: 0 0 8px rgba(255, 100, 100, 0.4);
+}
+
+.claim-body-text {
+  color: #ffffff;
+  line-height: 1.6;
+  margin-bottom: 1rem;
+  font-size: 1rem;
+}
+
+.claim-link {
+  color: #39ff14;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-color: rgba(57, 255, 20, 0.4);
+  transition: all 0.3s ease;
+}
+
+.claim-link:hover {
+  color: #66ff99;
+  text-decoration-color: #66ff99;
+  text-shadow: 0 0 10px rgba(57, 255, 20, 0.6);
+}
+
+.claim-shimmer {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(57, 255, 20, 0.5), transparent);
+  background-size: 200% 100%;
+  animation: claim-shimmer 1.5s infinite;
   margin-top: 1rem;
 }
 
-.claim-already summary {
-  cursor: pointer;
-  color: #6f7c6c;
-  font-size: 0.85rem;
-  letter-spacing: 0.1em;
+@keyframes claim-shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
 }
 
-.claim-dest-toggle {
+/* ===== Claimable NFT grid ===== */
+.claim-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 1.5rem;
+  margin: 1.5rem 0 2rem;
+}
+
+/* Reuses .marketplace-link's gradient + border + glow pattern from
+   NFTSection.css, adapted for an image card layout. */
+.claim-grid-card {
+  background: linear-gradient(135deg, rgba(57, 255, 20, 0.05), rgba(57, 255, 20, 0.02));
+  border: 2px solid rgba(57, 255, 20, 0.4);
+  border-radius: 12px;
+  padding: 1rem;
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.claim-grid-card:hover {
+  background: linear-gradient(135deg, rgba(57, 255, 20, 0.15), rgba(57, 255, 20, 0.08));
+  border-color: #39ff14;
+  box-shadow: 0 0 30px rgba(57, 255, 20, 0.5), inset 0 0 25px rgba(57, 255, 20, 0.1);
+  transform: translateY(-4px);
+}
+
+.claim-grid-card img {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border-radius: 8px;
+  display: block;
+}
+
+.claim-grid-card-name {
+  color: #39ff14;
+  font-size: 1.1rem;
+  margin-bottom: 0.25rem;
+}
+
+.claim-grid-card-muted {
+  opacity: 0.5;
+}
+
+.claim-kicker-ready {
+  color: #66ff99;
+}
+
+/* ===== Destination + claim action ===== */
+.claim-destination {
+  border-top: 1px solid rgba(57, 255, 20, 0.2);
+  padding-top: 1.5rem;
+  margin-top: 1rem;
+}
+
+.claim-destination-toggle {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
-  font-size: 0.9rem;
-  color: #a6a6a6;
+  gap: 0.75rem;
+  font-size: 0.95rem;
+  color: #ffffff;
   cursor: pointer;
-  margin-bottom: 0.75rem;
+  margin-bottom: 1rem;
 }
 
-.claim-dest-input {
+.claim-destination-input {
   width: 100%;
-  background: rgba(0, 0, 0, 0.4);
-  border: 1px solid rgba(57, 255, 20, 0.25);
-  color: #d6ffd0;
+  background: transparent;
+  border: 1px solid rgba(57, 255, 20, 0.4);
+  border-radius: 6px;
+  color: #ffffff;
   font-family: 'Share Tech Mono', monospace;
   padding: 0.6rem 0.75rem;
-  margin-bottom: 1rem;
-  font-size: 0.9rem;
+  margin-bottom: 1.5rem;
+  font-size: 0.95rem;
+  transition: all 0.3s ease;
 }
 
-.claim-dest-input:focus {
+.claim-destination-input:focus {
   outline: none;
-  border-color: rgba(57, 255, 20, 0.6);
+  border-color: #39ff14;
+  box-shadow: 0 0 10px rgba(57, 255, 20, 0.3);
 }
 
 .claim-action {
   width: 100%;
-  margin-top: 0.5rem;
-  font-size: 0.95rem;
-  letter-spacing: 0.1em;
+  padding: 1rem 2rem;
+  font-size: 1rem;
 }
 
 .claim-action:disabled {
   opacity: 0.6;
   cursor: not-allowed;
+  transform: none;
 }
 
-/* Override default wallet-adapter purple with the cyber-forest neon green */
-.claim-page .wallet-adapter-button,
-.claim-page .wallet-adapter-button-trigger {
-  background: linear-gradient(45deg, #39ff14, #00b140) !important;
-  background-color: #39ff14 !important;
-  color: #0b0b0a !important;
-  font-family: 'Share Tech Mono', monospace !important;
-  font-weight: bold !important;
-  border-radius: 4px !important;
-  box-shadow: 0 0 15px rgba(57, 255, 20, 0.35) !important;
-  letter-spacing: 0.05em !important;
+/* ===== Already-claimed disclosure ===== */
+.claim-already {
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(57, 255, 20, 0.15);
 }
 
-.claim-page .wallet-adapter-button:not([disabled]):hover,
-.claim-page .wallet-adapter-button-trigger:not([disabled]):hover {
-  background: linear-gradient(45deg, #66ff99, #39ff14) !important;
-  background-color: #66ff99 !important;
-  color: #0b0b0a !important;
-  box-shadow: 0 0 25px rgba(57, 255, 20, 0.6) !important;
+.claim-already summary {
+  cursor: pointer;
+  color: #a6a6a6;
+  font-size: 0.85rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  transition: color 0.3s ease;
 }
 
-.claim-page .wallet-adapter-button-start-icon,
-.claim-page .wallet-adapter-button-end-icon {
-  filter: brightness(0.2);
+.claim-already summary:hover {
+  color: #66ff99;
 }
 
-.claim-connect-small.wallet-adapter-button,
-.claim-connect-small.wallet-adapter-button-trigger {
-  font-size: 0.75rem !important;
-  padding: 6px 12px !important;
-  height: auto !important;
+.claim-already[open] summary {
+  margin-bottom: 1rem;
 }
 
-/* Modal recoloring so the wallet picker matches */
-.wallet-adapter-modal-wrapper {
-  background: #0b0b0a !important;
-  border: 1px solid rgba(57, 255, 20, 0.3) !important;
-  font-family: 'Share Tech Mono', monospace !important;
-}
-
-.wallet-adapter-modal-title {
-  color: #39ff14 !important;
-}
-
-.wallet-adapter-modal-list .wallet-adapter-button {
-  background: rgba(57, 255, 20, 0.05) !important;
-  color: #d6ffd0 !important;
-  border: 1px solid rgba(57, 255, 20, 0.15) !important;
-}
-
-.wallet-adapter-modal-list .wallet-adapter-button:hover {
-  background: rgba(57, 255, 20, 0.12) !important;
-  border-color: rgba(57, 255, 20, 0.4) !important;
-}
-
+/* ===== Tx list ===== */
 .claim-tx-list {
   list-style: none;
+  margin: 1rem 0 0;
   padding: 0;
-  margin-top: 0.75rem;
   display: grid;
   gap: 0.5rem;
 }
 
 .claim-tx-list a {
-  color: #b6f7a3;
-  text-decoration: none;
   font-family: 'Share Tech Mono', monospace;
-  font-size: 0.8rem;
+  font-size: 0.85rem;
   word-break: break-all;
 }
 
-.claim-tx-list a:hover {
-  color: #39ff14;
-  text-shadow: 0 0 6px rgba(57, 255, 20, 0.6);
+/* ===== Phase 2 Timeline ===== */
+.claim-timeline {
+  padding: 5rem 0;
+  background: rgba(11, 11, 10, 0.85);
+  border-top: 1px solid rgba(57, 255, 20, 0.2);
+  border-bottom: 1px solid rgba(57, 255, 20, 0.2);
 }
 
-.claim-meta {
-  max-width: 720px;
-  margin: 2rem auto 0;
-  text-align: left;
-  color: #6f7c6c;
-  font-size: 0.85rem;
+.claim-timeline-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  max-width: 960px;
+  margin: 0 auto;
 }
 
-.claim-wallet-note {
-  margin-top: 0.9rem;
-  font-size: 0.85rem;
-  color: #8a9985;
+.claim-timeline-item {
+  text-align: center;
+  padding: 2rem 1.5rem;
+  background: rgba(57, 255, 20, 0.05);
+  border: 1px solid rgba(57, 255, 20, 0.2);
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+.claim-timeline-item:hover {
+  background: rgba(57, 255, 20, 0.1);
+  border-color: rgba(57, 255, 20, 0.4);
+}
+
+.claim-timeline-done {
+  opacity: 0.65;
+}
+
+.claim-timeline-active {
+  border-color: rgba(57, 255, 20, 0.55);
+  box-shadow: 0 0 20px rgba(57, 255, 20, 0.18);
+}
+
+.claim-timeline-upcoming {
+  opacity: 0.85;
+}
+
+.claim-timeline-label {
+  color: #ffffff;
+  font-size: 1rem;
+  line-height: 1.5;
+  margin-top: 0.5rem;
+}
+
+/* ===== From the Collection ===== */
+.claim-collection {
+  padding: 5rem 0;
+}
+
+.claim-collection-caption {
+  text-align: center;
+  color: #a6a6a6;
+  font-size: 1rem;
+  max-width: 700px;
+  margin: 0 auto 3rem;
   line-height: 1.6;
 }
 
-.claim-wallet-note strong {
-  color: #b6f7a3;
-  font-weight: normal;
+.claim-collection-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  max-width: 1100px;
+  margin: 0 auto;
 }
 
-.claim-wallet-links {
-  list-style: none;
-  margin: 0.6rem 0 0;
-  padding: 0;
-  display: flex;
-  gap: 1.25rem;
-  flex-wrap: wrap;
+.claim-collection-tile {
+  border: 1.5px solid rgba(57, 255, 20, 0.2);
+  border-radius: 12px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  background: rgba(0, 0, 0, 0.3);
 }
 
-.claim-wallet-links a {
-  color: #b6f7a3;
-  text-decoration: none;
-  font-size: 0.85rem;
-  letter-spacing: 0.05em;
-  border-bottom: 1px dashed rgba(57, 255, 20, 0.3);
-  padding-bottom: 1px;
+.claim-collection-tile:hover {
+  border-color: rgba(57, 255, 20, 0.5);
+  box-shadow: 0 0 20px rgba(57, 255, 20, 0.25);
+  transform: translateY(-4px);
 }
 
-.claim-wallet-links a:hover {
+.claim-collection-tile img {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  display: block;
+}
+
+/* ============================================================
+ * Wallet-adapter modal theme override.
+ *
+ * The package hardcodes its modal/list styles (no CSS custom
+ * properties exposed). These selectors match the package's class
+ * names verbatim and rely on cascade order: ClaimPage.css is
+ * imported through the component graph, so it lands AFTER
+ * `@solana/wallet-adapter-react-ui/styles.css` in the bundle and
+ * wins without `!important`.
+ * ============================================================ */
+.wallet-adapter-modal-wrapper {
+  background: #0b0b0a;
+  border: 1.5px solid rgba(57, 255, 20, 0.3);
+  border-radius: 12px;
+  font-family: 'Share Tech Mono', monospace;
+  box-shadow: 0 0 40px rgba(57, 255, 20, 0.15);
+}
+
+.wallet-adapter-modal-title {
   color: #39ff14;
-  border-bottom-color: #39ff14;
+  text-shadow: 0 0 8px rgba(57, 255, 20, 0.5);
+  font-family: 'Share Tech Mono', monospace;
+}
+
+.wallet-adapter-modal-list .wallet-adapter-button {
+  background: rgba(57, 255, 20, 0.06);
+  color: #ffffff;
+  font-family: 'Share Tech Mono', monospace;
+  border-top: 1px solid rgba(57, 255, 20, 0.1);
+}
+
+.wallet-adapter-modal-list .wallet-adapter-button:not([disabled]):hover {
+  background: rgba(57, 255, 20, 0.14);
+  color: #39ff14;
+}
+
+.wallet-adapter-modal-button-close {
+  background: rgba(57, 255, 20, 0.08);
+  border: 1px solid rgba(57, 255, 20, 0.3);
+}
+
+.wallet-adapter-modal-button-close svg {
+  fill: #39ff14;
+}
+
+.wallet-adapter-modal-overlay {
+  background: rgba(0, 0, 0, 0.78);
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 768px) {
+  .claim-hero {
+    padding: 3rem 0 4rem;
+  }
+
+  .claim-hero-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .claim-hero-art {
+    order: -1;
+  }
+
+  .claim-hero-art img {
+    max-width: 320px;
+  }
+
+  .claim-card {
+    padding: 1.75rem 1.25rem;
+  }
+
+  .claim-timeline-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .claim-timeline,
+  .claim-collection {
+    padding: 3.5rem 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .claim-hero {
+    padding: 2rem 0 3rem;
+  }
+
+  .claim-hero-art img {
+    max-width: 260px;
+  }
 }

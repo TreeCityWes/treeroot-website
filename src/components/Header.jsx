@@ -1,5 +1,4 @@
 import './Header.css'
-import TokenPrice from './TokenPrice'
 
 function Header() {
   return (
@@ -10,7 +9,6 @@ function Header() {
           <span className="logo-text">TreeRoot.City</span>
         </div>
         <div className="header-links">
-          <TokenPrice />
           <div className="social-links">
             <a href="https://t.me/TreeRootCity" target="_blank" rel="noopener noreferrer" className="social-link telegram">
               Telegram
@@ -28,9 +26,6 @@ function Header() {
               GitBook
             </a>
           </div>
-          <a href="https://pump.fun/coin/J7hX5qVuJuiUiuZ1AkqE7eVS3sjTJ5kgFnuJwR2Rpump" target="_blank" rel="noopener noreferrer" className="btn-primary pump-btn">
-            Buy on Pump.fun
-          </a>
         </div>
       </div>
     </header>
