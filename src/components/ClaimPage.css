@@ -4,18 +4,20 @@
 }
 
 .claim-title {
-  font-size: clamp(1.6rem, 5vw, 3rem);
+  font-size: clamp(1.5rem, 4vw, 2.4rem);
   color: #39ff14;
-  text-align: center;
+  text-align: left;
   text-shadow: 0 0 12px rgba(57, 255, 20, 0.6);
   letter-spacing: 0.05em;
-  margin-bottom: 1rem;
+  margin: 0 auto 1rem;
+  max-width: 720px;
+  width: 100%;
 }
 
 .claim-subtitle {
-  max-width: 760px;
-  margin: 0 auto 3rem;
-  text-align: center;
+  max-width: 720px;
+  margin: 0 auto 2rem;
+  text-align: left;
   color: #a6a6a6;
   font-size: 1rem;
   line-height: 1.7;
@@ -244,7 +246,7 @@
 .claim-meta {
   max-width: 720px;
   margin: 2rem auto 0;
-  text-align: center;
+  text-align: left;
   color: #6f7c6c;
   font-size: 0.85rem;
 }
