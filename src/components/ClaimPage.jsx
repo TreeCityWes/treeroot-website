@@ -12,7 +12,6 @@ const GALLERY = [
   '/preview/rootguardian-420.webp',
   '/preview/rootguardian-488.webp',
   '/preview/rootguardian-565.webp',
-  '/preview/rootguardian-656.webp',
 ]
 
 function shorten(addr) {
